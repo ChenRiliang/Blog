@@ -1,9 +1,12 @@
 import {readdir, writeFile} from 'node:fs/promises';
+import path from 'node:path';
 
 const brCode = '\r\n\r\n';
+const DocsPath = path.resolve('./Docs');
+console.log('DocsPath', DocsPath);
 
 async function build() {
-    const files = await readdir('../Docs/');
+    const files = await readdir(DocsPath);
 
     let template = `# 目录 ${brCode}`;
 
@@ -12,9 +15,7 @@ async function build() {
 
         template += `## ${title} ${brCode}`
 
-        detail.forEach((name, index) => {
-            template += `**${name}** ${brCode}`;
-        })
+        detail.forEach((name, index) => template += `**${name}** ${brCode}`);
     }
 
     template += brCode;
@@ -23,7 +24,7 @@ async function build() {
 }
 
 async function writeTitle(fileName) {
-    const subFiles = await readdir(`../Docs/${fileName}`);
+    const subFiles = await readdir(`${DocsPath}/${fileName}`);
     console.log(fileName, subFiles);
 
     return {title: fileName, detail: subFiles.map(name => `[${name.replace(/.md/, '')}](./Docs/${fileName}/${name})`)};
