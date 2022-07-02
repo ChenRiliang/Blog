@@ -1,0 +1,29 @@
+# 当前工作流的名称
+name: 生产 README.md
+# ci触发的条件
+on:
+  push: # 什么请求触发
+    branches: 
+    - master： # 作用在哪些分支上
+
+jobs: # 构建的任务，一个工作流有多个构建任务，
+  build-and-deploy:
+    runs-on: ubuntu-latest # 在什么服务器上面执行这些任务，这里使用最新版本的ubuntu
+    
+    steps: # 构建任务的步骤，一个任务可分为多个步骤
+      
+    # 步骤1 给当前服务器安装node
+    - name: use node
+      uses: actions/setup-node@v2
+        with:
+          node-version: 14.16.0 # node版本
+          cache: "npm"
+          
+    # 步骤3 下载项目依赖    
+    - name: install
+      run: npm install
+      
+    # 步骤4 打包node项目
+    - name: build
+      run: npm run ./build/index.js # 此处是你node项目的构建脚本
+      
