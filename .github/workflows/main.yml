@@ -15,8 +15,8 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
     # 步骤1 给当前服务器安装node
     - name: use node
       uses: actions/setup-node@v2
-        with:
-          node-version: 14.16.0 # node版本
+      with:
+          node-version: 16 # node版本
           cache: "npm"
           
     # 步骤3 下载项目依赖    
