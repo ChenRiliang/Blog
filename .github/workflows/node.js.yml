@@ -25,6 +25,22 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-      env: # 设置环境变量
-        GITHUB_TOKEN: ${{ secrets.CREATE_README }}
     - run: npm run build
+    
+    - name: config git info
+      run: |
+        git config --global user.email "rliang.c@qq.com"
+        git config --global user.name "crl"
+    - name: commit change
+      run: |
+        git checkout master
+        git add .
+        git commit -m "Update from Github Action"
+    - name: push change
+      env:
+        GITHUB_LOGIN: crl
+        GITHUB_PERSONAL_TOKEN: ${{ secrets.CREATE_README }}
+      run: |
+        git push https://$GITHUB_LOGIN:$GITHUB_PERSONAL_TOKEN@github.com/$GITHUB_REPOSITORY.git
+    - name: done
+      run: echo 'done'
