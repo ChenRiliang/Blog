@@ -28,18 +28,18 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm run build
-    
-    - name: Record time  
+
+    - name: Record time
       run: echo `date` > date.log
-      
+
     - name: Commit and push if changed   # 将README.md更新到仓库
       run: |
         git diff
         git config --global user.email "rliang.c@qq.com"
         git config --global user.name "ChenRiliang"
         git add -A
-        git commit -m "Updated Readme" || exit 
+        git commit -m ":memo: Updated Readme" || exit 
         git push
-        
+
     - name: done
       run: echo 'done'

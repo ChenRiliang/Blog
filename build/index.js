@@ -22,7 +22,7 @@ async function build() {
 
     template += brCode;
     const writeFileRes = await writeFile(ReadmePtah, template, 'utf-8');
-    console.log('writeFile', writeFile);
+    console.log('写入成功~');
 }
 
 async function writeTitle(fileName) {
