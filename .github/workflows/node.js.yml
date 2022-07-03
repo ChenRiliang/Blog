@@ -25,4 +25,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+      env: # 设置环境变量
+        GITHUB_TOKEN: ${{ secrets.CREATE_README }}
     - run: npm run build
