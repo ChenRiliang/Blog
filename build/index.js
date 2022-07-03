@@ -3,6 +3,8 @@ import path from 'node:path';
 
 const brCode = '\r\n\r\n';
 const DocsPath = path.resolve('./Docs');
+const ReadmePtah = path.resolve('./README.md');
+
 console.log('DocsPath', DocsPath);
 
 async function build() {
@@ -19,7 +21,7 @@ async function build() {
     }
 
     template += brCode;
-    const writeFileRes = await writeFile('../README.md', template, 'utf-8');
+    const writeFileRes = await writeFile(ReadmePtah, template, 'utf-8');
     console.log('writeFile', writeFile);
 }
 
